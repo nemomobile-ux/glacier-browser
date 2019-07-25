@@ -42,4 +42,11 @@ Page {
             webContent.url = url
         }
     }
+
+    Connections{
+        target: webContent
+        onSelfUrlChanged: {
+            addressLine.addressLineText = url
+        }
+    }
 }

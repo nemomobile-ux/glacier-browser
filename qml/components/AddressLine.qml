@@ -9,6 +9,7 @@ Item {
     height: Theme.itemHeightExtraLarge
 
     signal urlReady(string url)
+    property alias addressLineText: urlLine.text
 
 
     TextField {
@@ -32,6 +33,13 @@ Item {
 
         onAccepted: {
             urlReady(urlLine.text)
+            focus = false
+        }
+    }
+
+    onAddressLineTextChanged: {
+        if(!urlLine.focus) {
+            urlLine.cursorPosition = 0
         }
     }
 }

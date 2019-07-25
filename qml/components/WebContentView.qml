@@ -9,6 +9,7 @@ Item{
     id: webWrapper
 
     property string url
+    signal selfUrlChanged(string url)
 
     MouseArea{
         anchors.fill: parent
@@ -50,6 +51,12 @@ Item{
         }
         Behavior on height {
             NumberAnimation { duration: 900; easing.type: Easing.OutCubic }
+        }
+
+        onUrlChanged: {
+            if(url != webWrapper.url) {
+                selfUrlChanged(realWeb.url)
+            }
         }
 
         states: [

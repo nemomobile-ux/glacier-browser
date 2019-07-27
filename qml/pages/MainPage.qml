@@ -53,7 +53,7 @@ Page {
             onClicked: {
                 webContent.url = url
                 addressLine.addressLineText = url
-                historyModel.historySearch = ""
+                historyModel.searchClear();
             }
 
             actions:[

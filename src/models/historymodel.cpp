@@ -96,3 +96,10 @@ void HistoryModel::removeFromHistory(QString url = "") {
         }
     }
 }
+
+void HistoryModel::searchClear()
+{
+    beginResetModel();
+    m_historySearchResult.clear();
+    endResetModel();
+}

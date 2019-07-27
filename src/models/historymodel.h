@@ -20,6 +20,7 @@ public:
 
     Q_INVOKABLE void insertToHistory(QString url, QString title);
     Q_INVOKABLE void removeFromHistory(QString url);
+    Q_INVOKABLE void searchClear();
 
     QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const {return hash;}

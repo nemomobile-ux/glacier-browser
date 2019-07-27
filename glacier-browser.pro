@@ -2,14 +2,16 @@ TEMPLATE = app
 
 TARGET = glacier-browser
 
-QT += qml quick
+QT += qml quick sql
 
 CONFIG += link_pkgconfig
 PKGCONFIG += glacierapp
 
 LIBS += -lglacierapp
 
-SOURCES += src/main.cpp
+SOURCES += src/main.cpp \
+    src/models/historymodel.cpp \
+    src/dbadapter.cpp
 
 DISTFILES += qml/glacier-browser.qml \
     qml/pages/MainPage.qml \
@@ -38,3 +40,7 @@ qml.files = qml/*
 qml.path = /usr/share/$$TARGET/qml
 
 INSTALLS += target desktop qml icon i18n_files
+
+HEADERS += \
+    src/models/historymodel.h \
+    src/dbadapter.h

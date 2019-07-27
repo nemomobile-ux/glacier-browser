@@ -23,18 +23,63 @@ Page {
         ]
     }
 
-    Column{
-        anchors.fill: parent
-        AddressLine{
-            id: addressLine
-        }
-
-        WebContentView{
-            id: webContent
-            width: parent.width
-            height: parent.height - addressLine.height
+    AddressLine{
+        id: addressLine
+        z: 2
+        anchors{
+            top: parent.top
+            left: parent.left
         }
     }
+
+    ListView{
+        id: historySearch
+        model: historyModel
+        anchors{
+            top: addressLine.bottom
+        }
+        z: 2
+        width: parent.width
+        height: parent.height-addressLine.height
+
+        delegate: ListViewItemWithActions {
+            label: title
+            description: url
+            showNext: true
+            iconVisible: false
+            width: parent.width
+            height: Theme.itemHeightLarge
+
+            onClicked: {
+                webContent.url = url
+                addressLine.addressLineText = url
+                historyModel.historySearch = ""
+            }
+
+            actions:[
+                ActionButton {
+                    iconSource: "image://theme/times"
+                    onClicked: historyModel.removeFromHistory(url)
+                }
+            ]
+        }
+        Rectangle{
+            color: "black"
+            width: parent.width
+            height: Theme.itemHeightLarge*historySearch.count
+            anchors.top: parent.top
+            z: -1
+        }
+    }
+
+    WebContentView{
+        id: webContent
+        width: parent.width
+        height: parent.height - addressLine.height
+        z: 1
+        anchors.top: addressLine.bottom
+    }
+
 
     Connections{
         target: addressLine
@@ -47,6 +92,10 @@ Page {
         target: webContent
         onSelfUrlChanged: {
             addressLine.addressLineText = url
+        }
+
+        onTitleChanged:{
+            tools.title = webContent.title
         }
     }
 }

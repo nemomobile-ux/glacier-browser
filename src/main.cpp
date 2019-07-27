@@ -8,10 +8,14 @@
 
 #include <glacierapp.h>
 
+#include "models/historymodel.h"
+
 int main(int argc, char *argv[])
 {
     QGuiApplication *app = GlacierApp::app(argc, argv);
     app->setOrganizationName("NemoMobile");
+
+    qmlRegisterType<HistoryModel>("org.glacier.browser",1,0,"HistoryModel");
 
     QQuickWindow *window = GlacierApp::showWindow();
     window->setTitle(QObject::tr("glacier-browser"));

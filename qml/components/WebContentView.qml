@@ -9,6 +9,7 @@ Item{
     id: webWrapper
 
     property string url
+    property alias title: realWeb.title
     signal selfUrlChanged(string url)
 
     MouseArea{
@@ -56,6 +57,12 @@ Item{
         onUrlChanged: {
             if(url != webWrapper.url) {
                 selfUrlChanged(realWeb.url)
+            }
+        }
+
+        onLoadingChanged: {
+            if(!loading) {
+                historyModel.insertToHistory(realWeb.url,realWeb.title)
             }
         }
 

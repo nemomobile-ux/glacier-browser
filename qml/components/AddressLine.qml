@@ -6,16 +6,16 @@ import QtQuick.Controls.Nemo 1.0
 Item {
     id: addressLine
     width: parent.width
-    height: Theme.itemHeightExtraLarge
 
     signal urlReady(string url)
     property alias addressLineText: urlLine.text
 
+    height: childrenRect.height+Theme.itemSpacingLarge*2
 
     TextField {
         id: urlLine
         width: parent.width-Theme.itemSpacingLarge*2
-        height: parent.height-Theme.itemSpacingLarge*2
+        height: Theme.itemHeightExtraLarge-Theme.itemSpacingLarge*2
         anchors{
             top: parent.top
             topMargin: Theme.itemSpacingLarge
@@ -26,8 +26,23 @@ Item {
         placeholderText: qsTr("Search")
 
         onTextChanged: {
-            if(urlLine.text.lenght>0) {
+            if(urlLine.length>0) {
                 urlLine.forceActiveFocus()
+            }
+
+            if(!urlLine.text.startsWith("http")) {
+                /*Need something another*/
+                var cleanedString = urlLine.text.replace(/http?s?:?\/{0,2}/gm,'');
+
+                if(cleanedString.length>2) {
+                    console.log("Search in history")
+                    historyModel.historySearch = cleanedString
+                }
+                else {
+                    historyModel.historySearch = "";
+                }
+            } else {
+                historyModel.historySearch = "";
             }
         }
 

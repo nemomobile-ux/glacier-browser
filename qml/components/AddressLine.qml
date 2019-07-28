@@ -47,14 +47,24 @@ Item {
         }
 
         onAccepted: {
-            urlReady(urlLine.text)
+            tabModel.addTab(urlLine.text)
             focus = false
+            historyModel.searchClear();
         }
     }
 
     onAddressLineTextChanged: {
         if(!urlLine.focus) {
             urlLine.cursorPosition = 0
+        }
+    }
+
+    Connections{
+        target: tabModel
+        onTabChanged: {
+            if(idx == tabModel.currentIndex) {
+                urlLine.text = url
+            }
         }
     }
 }

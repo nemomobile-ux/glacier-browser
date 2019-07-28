@@ -16,6 +16,8 @@ Page {
         tools: [
             ToolButton {
                 iconSource: "image://theme/clone"
+                showCounter: true
+                counterValue: tabModel.rowCount
             },
             ToolButton {
                 iconSource: "image://theme/bookmark"
@@ -51,7 +53,7 @@ Page {
             height: Theme.itemHeightLarge
 
             onClicked: {
-                webContent.url = url
+                tabModel.addTab(url)
                 addressLine.addressLineText = url
                 historyModel.searchClear();
             }
@@ -72,12 +74,28 @@ Page {
         }
     }
 
-    WebContentView{
-        id: webContent
+
+    Repeater{
+        id: tabRepeater
         width: parent.width
         height: parent.height - addressLine.height
         z: 1
-        anchors.top: addressLine.bottom
+
+        model: tabModel
+
+        property string title
+
+        WebContentView{
+            id: webContent
+            width: parent.width
+            height: parent.height - addressLine.height
+            anchors.top: addressLine.bottom
+            url: modelData
+        }
+
+        onTitleChanged: {
+            tools.title = tabRepeater.title
+        }
     }
 
 
@@ -85,17 +103,6 @@ Page {
         target: addressLine
         onUrlReady: {
             webContent.url = url
-        }
-    }
-
-    Connections{
-        target: webContent
-        onSelfUrlChanged: {
-            addressLine.addressLineText = url
-        }
-
-        onTitleChanged:{
-            tools.title = webContent.title
         }
     }
 }

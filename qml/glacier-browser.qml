@@ -16,4 +16,8 @@ ApplicationWindow{
     HistoryModel{
         id: historyModel
     }
+
+    TabModel{
+        id: tabModel
+    }
 }

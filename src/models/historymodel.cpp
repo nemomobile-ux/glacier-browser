@@ -49,7 +49,7 @@ void HistoryModel::p_setHistorySearch(QString historySearch) {
     QSqlQuery query(db);
     QString weNeed = QString("SELECT DISTINCT title, url FROM history WHERE `title` LIKE '%%1%' OR `url` LIKE '%%1%' ORDER BY id DESC").arg(historySearch);
 
-    if(query.exec(weNeed)) {
+    if(!query.exec(weNeed)) {
         qDebug() << query.lastQuery() << query.lastError().text();
     }
 

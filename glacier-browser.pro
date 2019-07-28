@@ -11,7 +11,8 @@ LIBS += -lglacierapp
 
 SOURCES += src/main.cpp \
     src/models/historymodel.cpp \
-    src/dbadapter.cpp
+    src/dbadapter.cpp \
+    src/models/tabmodel.cpp
 
 DISTFILES += qml/glacier-browser.qml \
     qml/pages/MainPage.qml \
@@ -43,4 +44,5 @@ INSTALLS += target desktop qml icon i18n_files
 
 HEADERS += \
     src/models/historymodel.h \
-    src/dbadapter.h
+    src/dbadapter.h \
+    src/models/tabmodel.h

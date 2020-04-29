@@ -3,4 +3,4 @@ Type=Application
 Icon=/usr/share/glacier-browser/icons/glacier-browser.png
 Exec=/usr/bin/glacier-browser
 Name=Browser
-Name[ru]=glacier-browser
+Name[ru]=Браузер

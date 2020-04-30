@@ -4,3 +4,4 @@ Icon=/usr/share/glacier-browser/icons/glacier-browser.png
 Exec=/usr/bin/glacier-browser
 Name=Browser
 Name[ru]=Браузер
+Name[es]=Navegador

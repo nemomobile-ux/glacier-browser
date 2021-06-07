@@ -8,8 +8,8 @@
 
 #include <glacierapp.h>
 
-#include "models/historymodel.h"
-#include "models/tabmodel.h"
+#include "historymodel.h"
+#include "tabmodel.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -20,7 +20,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<TabModel>("org.glacier.browser",1,0,"TabModel");
 
     QQuickWindow *window = GlacierApp::showWindow();
-    window->setTitle(QObject::tr("glacier-browser"));
+    window->setTitle(QObject::tr("Web browser"));
     window->setIcon(QIcon("/usr/share/glacier-browser/images/glacier-browser.png"));
 
     return app->exec();

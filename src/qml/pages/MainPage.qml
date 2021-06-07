@@ -18,16 +18,23 @@ Page {
                 iconSource: "image://theme/clone"
                 showCounter: true
                 counterValue: tabModel.rowCount
+                onClicked: {
+                    mainPage.Stack.view.push(Qt.resolvedUrl("TabPage.qml"))
+
+                }
             },
             ToolButton {
                 iconSource: "image://theme/bookmark"
+                onClicked: {
+                    mainPage.Stack.view.push(Qt.resolvedUrl("Bookmarks.qml"), {addUrl: addressLine.addressLineText, addTitle: tools.title})
+                }
             }
         ]
     }
 
     AddressLine{
         id: addressLine
-        z: 2
+        z: historySearch.z + 1
         anchors{
             top: parent.top
             left: parent.left
@@ -40,16 +47,17 @@ Page {
         anchors{
             top: addressLine.bottom
         }
-        z: 2
+        z: 1000
         width: parent.width
         height: parent.height-addressLine.height
+        visible: (historySearch.count > 0)
 
         delegate: ListViewItemWithActions {
             label: title
             description: url
             showNext: true
             iconVisible: false
-            width: parent.width
+            width: (parent !== null) ? parent.width : 0
             height: Theme.itemHeightLarge
 
             onClicked: {
@@ -66,7 +74,7 @@ Page {
             ]
         }
         Rectangle{
-            color: "black"
+            color: Theme.backgroundColor
             width: parent.width
             height: Theme.itemHeightLarge*historySearch.count
             anchors.top: parent.top
@@ -97,6 +105,7 @@ Page {
             tools.title = tabRepeater.title
         }
     }
+
 
 
     Connections{

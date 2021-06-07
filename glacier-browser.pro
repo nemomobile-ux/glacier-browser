@@ -2,7 +2,7 @@ TEMPLATE = app
 
 TARGET = glacier-browser
 
-QT += qml quick sql
+QT += qml quick sql webengine
 
 CONFIG += link_pkgconfig
 PKGCONFIG += glacierapp

@@ -3,7 +3,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
-import QtWebKit 3.0
+import QtWebEngine 1.0
 
 Item{
     id: webWrapper
@@ -23,7 +23,7 @@ Item{
         z: 2
     }
 
-    WebView {
+    WebEngineView {
         id: realWeb
         anchors{
             fill: parent

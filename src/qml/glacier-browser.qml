@@ -20,4 +20,9 @@ ApplicationWindow{
     TabModel{
         id: tabModel
     }
+
+    BookmarksModel {
+        id: bookmarksModel
+    }
+
 }

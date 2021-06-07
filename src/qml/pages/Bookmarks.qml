@@ -7,8 +7,9 @@ import QtQuick.Controls.Nemo 1.0
 
 Page {
 
-    property url addUrl: ""
-    property string addTitle;
+    property string addUrl: ""
+    property string addTitle: ""
+    property variant bookmarksModel
 
     headerTools: HeaderToolsLayout {
         id: tools
@@ -18,18 +19,15 @@ Page {
             ToolButton {
                 iconSource: "image://theme/plus"
                 onClicked: {
-                console.log("add bookmark: " + addUrl)
-                    bookmarksModel.append({title: addTitle, url: addUrl});
+                    console.log("add bookmark: " + addUrl + " " + bookmarksModel)
+                    bookmarksModel.insertToBookmarks(addUrl, addTitle)
                 }
             }
         ]
     }
 
-    ListModel {
-        id: bookmarksModel
-    }
 
-        ListView{
+    ListView{
         id: bookmarksView
         model: bookmarksModel
 
@@ -46,13 +44,18 @@ Page {
 
             onClicked: {
                 console.log("load web page -- title:" + title + " " + url);
+                tabModel.addTab(url)
+                if (stackView) {
+                    stackView.pop()
+                }
+
             }
 
             actions:[
                 ActionButton {
                     iconSource: "image://theme/times"
                     onClicked: {
-                        bookmarksModel.remove(index);
+                        bookmarksModel.removeFromBookmarks(url)
                     }
                 }
             ]

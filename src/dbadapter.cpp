@@ -40,4 +40,5 @@ DbAdapter& DbAdapter::instance() {
 
 void DbAdapter::initDB() {
     db.exec("CREATE TABLE `history` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `url` TEXT, `timestamp` INTEGER)");
+    db.exec("CREATE TABLE `bookmarks` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `url` TEXT, `timestamp` INTEGER)");
 }

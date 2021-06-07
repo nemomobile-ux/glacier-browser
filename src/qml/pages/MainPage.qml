@@ -26,7 +26,7 @@ Page {
             ToolButton {
                 iconSource: "image://theme/bookmark"
                 onClicked: {
-                    mainPage.Stack.view.push(Qt.resolvedUrl("Bookmarks.qml"), {addUrl: addressLine.addressLineText, addTitle: tools.title})
+                    mainPage.Stack.view.push(Qt.resolvedUrl("Bookmarks.qml"), {bookmarksModel: bookmarksModel, addUrl: addressLine.addressLineText, addTitle: tools.title})
                 }
             }
         ]

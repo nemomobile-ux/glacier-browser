@@ -4,14 +4,14 @@
 BookmarksModel::BookmarksModel(QObject *parent) : QAbstractListModel(parent) {
     hash.insert(Qt::UserRole ,QByteArray("title"));
     hash.insert(Qt::UserRole+1 ,QByteArray("url"));
+    hash.insert(Qt::UserRole+2 ,QByteArray("favicon"));
 
 
     beginResetModel();
 
-
     QSqlDatabase db = DbAdapter::instance().db;
     QSqlQuery query(db);
-    QString weNeed = QString("SELECT DISTINCT title, url FROM bookmarks ORDER BY id ASC");
+    QString weNeed = QString("SELECT DISTINCT title, url, favicon FROM bookmarks ORDER BY id ASC");
 
     if(!query.exec(weNeed)) {
         qDebug() << query.lastQuery() << query.lastError().text();
@@ -22,6 +22,7 @@ BookmarksModel::BookmarksModel(QObject *parent) : QAbstractListModel(parent) {
         BookmarksItem item;
         item.title = query.value(0).toString();
         item.url = query.value(1).toString();
+        item.favicon = query.value(2).toString();
 
         m_bookmarksSearchResult.append(item);
     }
@@ -48,6 +49,8 @@ QVariant BookmarksModel::data(const QModelIndex &index, int role) const {
         return item.title;
     case Qt::UserRole+1:
         return item.url;
+    case Qt::UserRole+2:
+        return item.favicon;
     default:
         return QVariant();
     }
@@ -59,15 +62,16 @@ int BookmarksModel::rowCount(const QModelIndex &parent) const {
 }
 
 
-void BookmarksModel::insertToBookmarks(QString url, QString title) {
+void BookmarksModel::insertToBookmarks(QString url, QString title, QString favicon) {
     if(!url.isEmpty() && !title.isEmpty()) {
         beginResetModel();
 
         QSqlDatabase db = DbAdapter::instance().db;
         QSqlQuery query(db);
-        query.prepare("INSERT INTO bookmarks (`title`, `url`, `timestamp`) VALUES (:title, :url, :timestamp)");
+        query.prepare("INSERT INTO bookmarks (`title`, `url`, `favicon`, `timestamp`) VALUES (:title, :url, :favicon, :timestamp)");
         query.bindValue(":title",title);
         query.bindValue(":url",url);
+        query.bindValue(":favicon",favicon);
         query.bindValue(":timestamp",QDateTime::currentDateTime().toMSecsSinceEpoch());
 
         if(!query.exec()) {
@@ -76,6 +80,7 @@ void BookmarksModel::insertToBookmarks(QString url, QString title) {
         BookmarksItem item;
         item.title = title;
         item.url = url;
+        item.favicon = favicon;
         m_bookmarksSearchResult.append(item);
 
         endResetModel();

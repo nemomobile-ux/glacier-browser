@@ -9,6 +9,7 @@ Page {
 
     property string addUrl: ""
     property string addTitle: ""
+    property string addIcon: ""
     property variant bookmarksModel
 
     headerTools: HeaderToolsLayout {
@@ -19,8 +20,8 @@ Page {
             ToolButton {
                 iconSource: "image://theme/plus"
                 onClicked: {
-                    console.log("add bookmark: " + addUrl + " " + bookmarksModel)
-                    bookmarksModel.insertToBookmarks(addUrl, addTitle)
+                    console.log("add bookmark: " + addUrl + " " + bookmarksModel + " " + addIcon)
+                    bookmarksModel.insertToBookmarks(addUrl, addTitle, addIcon)
                 }
             }
         ]
@@ -38,13 +39,19 @@ Page {
             label: title
             description: url
             showNext: true
-            iconVisible: false
-            width: parent.width
+            iconVisible: true
+            iconColorized: false
+            icon: favicon
+            width: (parent != null) ? parent.width : 0
             height: Theme.itemHeightLarge
 
             onClicked: {
-                console.log("load web page -- title:" + title + " " + url);
-                tabModel.addTab(url)
+                console.log("Bookmarks - load web page: " + title + " " + url);
+                if (tabModel.rowCount > 0) {
+                    tabModel.changeTab(tabModel.currentIndex, url)
+                } else {
+                    tabModel.addTab(url)
+                }
                 if (stackView) {
                     stackView.pop()
                 }

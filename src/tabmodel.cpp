@@ -21,6 +21,9 @@ void TabModel::addTab(QString url)
         m_tabList.append(url);
         qDebug() << "addTab:" << url;
         m_currentIndex++;
+        if (m_currentIndex >= m_tabList.count()) {
+            m_currentIndex = m_tabList.count()-1;
+        }
         endInsertRows();
         emit rowCountChanged();
         emit currentIndexChanged(m_currentIndex);
@@ -30,10 +33,18 @@ void TabModel::addTab(QString url)
 
 void TabModel::removeTab(int idx)
 {
+    qDebug() << "void TabModel::removeTab(int idx) " << idx;
     if(idx < m_tabList.count()) {
+        beginRemoveRows(QModelIndex(), idx, idx);
         m_tabList.removeAt(idx);
         dataChanged(index(idx),index(idx));
         emit rowCountChanged();
+        endRemoveRows();
+    }
+    if (m_currentIndex >= m_tabList.count()) {
+        m_currentIndex = m_tabList.count()-1;
+        qDebug() << "switch m_currentIndex"<< m_currentIndex;
+        emit currentIndexChanged(m_currentIndex);
     }
 }
 
@@ -48,7 +59,6 @@ void TabModel::changeTab(int idx, QString url)
         m_tabList[idx] = url;
         dataChanged(index(idx),index(idx));
         emit tabChanged(idx,url);
-        qDebug() << "tabChanged:" << idx << ":" << url;
     }
 }
 

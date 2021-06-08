@@ -35,7 +35,7 @@ Item {
                 var cleanedString = urlLine.text.replace(/http?s?:?\/{0,2}/gm,'');
 
                 if(cleanedString.length>2) {
-                    console.log("Search in history")
+                    console.log("Search in history: " + cleanedString)
                     historyModel.historySearch = cleanedString
                 }
                 else {
@@ -59,10 +59,10 @@ Item {
         }
     }
 
-    Connections{
+    Connections {
         target: tabModel
-        onTabChanged: {
-            if(idx == tabModel.currentIndex) {
+        function onTabChanged(idx, url) {
+            if(idx === tabModel.currentIndex) {
                 urlLine.text = url
             }
         }

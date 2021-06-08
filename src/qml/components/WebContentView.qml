@@ -71,6 +71,6 @@ Item{
         }
 
         realWeb.url = editedUrl;
-        tabModel.changeTab(tabModel.currentIndex,editedUrl);
+        tabModel.changeTab(tabModel.currentIndex, editedUrl);
     }
 }

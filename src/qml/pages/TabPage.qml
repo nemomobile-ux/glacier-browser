@@ -6,10 +6,26 @@ import QtQuick.Controls.Nemo 1.0
 
 
 Page {
+
+    property variant repeaterObject;
+
     headerTools: HeaderToolsLayout {
         id: tools
         title: qsTr("Tabs")
-        showBackButton: true
+        showBackButton: false; // user should always choose the page he want to go
+        tools: [
+            ToolButton {
+                iconSource: "image://theme/plus"
+                onClicked: {
+                    console.log("add empty tab")
+                    tabModel.addTab("https://nemomobile.net");
+                    if (stackView) {
+                        stackView.pop()
+                    }
+
+                }
+            }
+        ]
     }
 
 
@@ -17,27 +33,32 @@ Page {
         id: tabsView
         model: tabModel
 
-        width: parent.width
+        width: (parent != null) ? parent.width : 0
         height: parent.height
 
         delegate: ListViewItemWithActions {
-            label: title
+            label: ((repeaterObject !== null) && (repeaterObject.itemAt(tabModel.currentIndex) !== null)) ? repeaterObject.itemAt(index).title : ""
             description: url
             showNext: true
-            iconVisible: false
-            width: parent.width
+            icon: ((repeaterObject !== null) && (repeaterObject.itemAt(tabModel.currentIndex) !== null)) ? repeaterObject.itemAt(index).icon : ""
+            iconVisible: true
+            iconColorized: false;
+            width: (parent != null) ? parent.width : 0;
             height: Theme.itemHeightLarge
 
             onClicked: {
-                console.log("tabModel.setCurrentIndex("+index+");");
-                tabModel.setCurrentIndex(index);
+                tabModel.currentIndex = index
+
+                if (stackView) {
+                    stackView.pop()
+                }
+
             }
 
             actions:[
                 ActionButton {
                     iconSource: "image://theme/times"
                     onClicked: {
-                        console.log("tabModel.removeTab(" + index + ")")
                         tabModel.removeTab(index)
                     }
                 }

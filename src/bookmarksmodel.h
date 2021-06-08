@@ -12,12 +12,13 @@ class BookmarksModel : public QAbstractListModel
     {
         QString title;
         QString url;
+        QString favicon;
     };
 
 public:
     explicit BookmarksModel(QObject *parent = nullptr);
 
-    Q_INVOKABLE void insertToBookmarks(QString url = "", QString title = "");
+    Q_INVOKABLE void insertToBookmarks(QString url = "", QString title = "", QString favicon = "");
     Q_INVOKABLE void removeFromBookmarks(QString url = "");
 
 

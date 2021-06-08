@@ -11,7 +11,7 @@ Page {
 
     headerTools: HeaderToolsLayout {
         id: tools
-        title: qsTr("Browser")
+        title: (tabRepeater.itemAt(tabModel.currentIndex) !== null) ? tabRepeater.itemAt(tabModel.currentIndex).title : qsTr("Browser")
 
         tools: [
             ToolButton {
@@ -19,14 +19,21 @@ Page {
                 showCounter: true
                 counterValue: tabModel.rowCount
                 onClicked: {
-                    mainPage.Stack.view.push(Qt.resolvedUrl("TabPage.qml"))
+                    mainPage.Stack.view.push(Qt.resolvedUrl("TabPage.qml"), {repeaterObject: tabRepeater})
 
                 }
             },
             ToolButton {
                 iconSource: "image://theme/bookmark"
                 onClicked: {
-                    mainPage.Stack.view.push(Qt.resolvedUrl("Bookmarks.qml"), {bookmarksModel: bookmarksModel, addUrl: addressLine.addressLineText, addTitle: tools.title})
+                    mainPage.Stack.view.push(
+                                Qt.resolvedUrl("Bookmarks.qml"),
+                                {
+                                    bookmarksModel: bookmarksModel,
+                                    addUrl: addressLine.addressLineText,
+                                    addTitle: tools.title,
+                                    addIcon: (tabRepeater.itemAt(tabModel.currentIndex) !== null) ? tabRepeater.itemAt(tabModel.currentIndex).icon : ''
+                                })
                 }
             }
         ]
@@ -91,27 +98,25 @@ Page {
 
         model: tabModel
 
-        property string title
-
         WebContentView{
             id: webContent
             width: parent.width
             height: parent.height - addressLine.height
             anchors.top: addressLine.bottom
             url: modelData
+            visible: (index === tabModel.currentIndex);
         }
 
-        onTitleChanged: {
-            tools.title = tabRepeater.title
-        }
     }
 
 
 
     Connections{
         target: addressLine
-        onUrlReady: {
+        function onUrlReady(url) {
             webContent.url = url
         }
     }
+
+
 }

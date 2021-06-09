@@ -37,10 +37,10 @@ Page {
         height: parent.height
 
         delegate: ListViewItemWithActions {
-            label: ((repeaterObject !== null) && (repeaterObject.itemAt(tabModel.currentIndex) !== null)) ? repeaterObject.itemAt(index).title : ""
+            label: ((repeaterObject !== null) && (repeaterObject.itemAt(index) !== null)) ? repeaterObject.itemAt(index).title : ""
             description: url
             showNext: true
-            icon: ((repeaterObject !== null) && (repeaterObject.itemAt(tabModel.currentIndex) !== null)) ? repeaterObject.itemAt(index).icon : ""
+            icon: ((repeaterObject !== null) && (repeaterObject.itemAt(index) !== null)) ? repeaterObject.itemAt(index).icon : ""
             iconVisible: true
             iconColorized: false;
             width: (parent != null) ? parent.width : 0;

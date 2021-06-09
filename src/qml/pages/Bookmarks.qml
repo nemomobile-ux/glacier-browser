@@ -47,11 +47,13 @@ Page {
 
             onClicked: {
                 console.log("Bookmarks - load web page: " + title + " " + url);
-//                if (tabModel.rowCount > 0) {
-//                    tabModel.changeTab(tabModel.currentIndex, url)
-//                } else {
+
+//                if (tabModel.rowCount === 0) {
                     tabModel.addTab(url)
+//                } else {
+//                    tabModel.changeTab(tabModel.currentIndex, url)
 //                }
+
                 if (stackView) {
                     stackView.pop()
                 }

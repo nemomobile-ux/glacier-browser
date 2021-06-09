@@ -20,10 +20,7 @@ void TabModel::addTab(QString url)
         beginInsertRows(QModelIndex(), rowCount(), rowCount());
         m_tabList.append(url);
         qDebug() << "addTab:" << url;
-        m_currentIndex++;
-        if (m_currentIndex >= m_tabList.count()) {
-            m_currentIndex = m_tabList.count()-1;
-        }
+        m_currentIndex = m_tabList.count()-1;
         endInsertRows();
         emit rowCountChanged();
         emit currentIndexChanged(m_currentIndex);

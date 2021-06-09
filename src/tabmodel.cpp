@@ -27,7 +27,6 @@ void TabModel::addTab(QString url)
         endInsertRows();
         emit rowCountChanged();
         emit currentIndexChanged(m_currentIndex);
-        qDebug() << "Current index now:" << m_currentIndex;
     }
 }
 

@@ -40,9 +40,6 @@ Item{
         onLoadingChanged: {
             if(!loading) {
                 historyModel.insertToHistory(realWeb.url,realWeb.title)
-                if(tabModel.currentIndex == index) {
-                    tabRepeater.title = realWeb.title
-                }
             }
         }
     }

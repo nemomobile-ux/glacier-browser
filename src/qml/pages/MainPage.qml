@@ -109,7 +109,11 @@ Page {
 
     }
 
-
+    Binding {
+        target: addressLine; property: "addressLineText";
+        when: tabRepeater.itemAt(tabModel.currentIndex) !== null
+        value: tabRepeater.itemAt(tabModel.currentIndex).url;
+    }
 
     Connections{
         target: addressLine

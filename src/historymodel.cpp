@@ -1,5 +1,5 @@
 #include "historymodel.h"
-#include "../dbadapter.h"
+#include "dbadapter.h"
 
 HistoryModel::HistoryModel(QObject *parent) : QAbstractListModel(parent) {
     hash.insert(Qt::UserRole ,QByteArray("title"));

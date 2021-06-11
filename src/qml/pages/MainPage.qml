@@ -11,23 +11,37 @@ Page {
 
     headerTools: HeaderToolsLayout {
         id: tools
-        title: qsTr("Browser")
+        title: (tabRepeater.itemAt(tabModel.currentIndex) !== null) ? tabRepeater.itemAt(tabModel.currentIndex).title : qsTr("Browser")
 
         tools: [
             ToolButton {
                 iconSource: "image://theme/clone"
                 showCounter: true
                 counterValue: tabModel.rowCount
+                onClicked: {
+                    mainPage.Stack.view.push(Qt.resolvedUrl("TabPage.qml"), {repeaterObject: tabRepeater})
+
+                }
             },
             ToolButton {
                 iconSource: "image://theme/bookmark"
+                onClicked: {
+                    mainPage.Stack.view.push(
+                                Qt.resolvedUrl("Bookmarks.qml"),
+                                {
+                                    bookmarksModel: bookmarksModel,
+                                    addUrl: addressLine.addressLineText,
+                                    addTitle: tools.title,
+                                    addIcon: (tabRepeater.itemAt(tabModel.currentIndex) !== null) ? tabRepeater.itemAt(tabModel.currentIndex).icon : ''
+                                })
+                }
             }
         ]
     }
 
     AddressLine{
         id: addressLine
-        z: 2
+        z: historySearch.z + 1
         anchors{
             top: parent.top
             left: parent.left
@@ -40,16 +54,17 @@ Page {
         anchors{
             top: addressLine.bottom
         }
-        z: 2
+        z: 1000
         width: parent.width
         height: parent.height-addressLine.height
+        visible: (historySearch.count > 0)
 
         delegate: ListViewItemWithActions {
             label: title
             description: url
             showNext: true
             iconVisible: false
-            width: parent.width
+            width: (parent !== null) ? parent.width : 0
             height: Theme.itemHeightLarge
 
             onClicked: {
@@ -66,7 +81,7 @@ Page {
             ]
         }
         Rectangle{
-            color: "black"
+            color: Theme.backgroundColor
             width: parent.width
             height: Theme.itemHeightLarge*historySearch.count
             anchors.top: parent.top
@@ -83,26 +98,28 @@ Page {
 
         model: tabModel
 
-        property string title
-
         WebContentView{
             id: webContent
             width: parent.width
             height: parent.height - addressLine.height
             anchors.top: addressLine.bottom
             url: modelData
+            visible: (index === tabModel.currentIndex);
         }
 
-        onTitleChanged: {
-            tools.title = tabRepeater.title
-        }
     }
 
+    Binding {
+        target: addressLine; property: "addressLineText";
+        value: (tabRepeater.itemAt(tabModel.currentIndex) !== null) ?  tabRepeater.itemAt(tabModel.currentIndex).url : '';
+    }
 
     Connections{
         target: addressLine
-        onUrlReady: {
+        function onUrlReady(url) {
             webContent.url = url
         }
     }
+
+
 }

@@ -3,13 +3,14 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
-import QtWebKit 3.0
+import QtWebEngine 1.0
 
 Item{
     id: webWrapper
 
     property string url
     property alias title: realWeb.title
+    property alias icon: realWeb.icon
 
     ProgressBar {
         anchors{
@@ -23,7 +24,7 @@ Item{
         z: 2
     }
 
-    WebView {
+    WebEngineView {
         id: realWeb
         anchors{
             fill: parent
@@ -39,9 +40,6 @@ Item{
         onLoadingChanged: {
             if(!loading) {
                 historyModel.insertToHistory(realWeb.url,realWeb.title)
-                if(tabModel.currentIndex == index) {
-                    tabRepeater.title = realWeb.title
-                }
             }
         }
     }
@@ -70,6 +68,6 @@ Item{
         }
 
         realWeb.url = editedUrl;
-        tabModel.changeTab(tabModel.currentIndex,editedUrl);
+        tabModel.changeTab(tabModel.currentIndex, editedUrl);
     }
 }

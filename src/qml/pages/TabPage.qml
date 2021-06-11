@@ -12,20 +12,20 @@ Page {
     headerTools: HeaderToolsLayout {
         id: tools
         title: qsTr("Tabs")
-        showBackButton: false; // user should always choose the page he want to go
-        tools: [
-            ToolButton {
-                iconSource: "image://theme/plus"
-                onClicked: {
-                    console.log("add empty tab")
-                    tabModel.addTab("https://nemomobile.net");
-                    if (stackView) {
-                        stackView.pop()
-                    }
+        showBackButton: tabModel.rowCount == 0; // user should always choose the page he want to go
+//        tools: [
+//            ToolButton {
+//                iconSource: "image://theme/plus"
+//                onClicked: {
+//                    console.log("add empty tab")
+//                    tabModel.addTab("https://nemomobile.net");
+//                    if (stackView) {
+//                        stackView.pop()
+//                    }
 
-                }
-            }
-        ]
+//                }
+//            }
+//        ]
     }
 
 

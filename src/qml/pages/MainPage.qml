@@ -5,7 +5,6 @@ import QtQuick.Controls.Nemo 1.0
 
 import "../components"
 
-
 Page {
     id: mainPage
 

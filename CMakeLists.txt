@@ -29,5 +29,5 @@ install(FILES ${QM_FILES}
 
 install(FILES glacier-browser.desktop
 	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
-install(DIRECTORY images
+install(DIRECTORY icons
 	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/glacier-browser)

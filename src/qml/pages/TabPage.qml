@@ -3,8 +3,6 @@ import QtQuick 2.6
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 
-
-
 Page {
 
     property variant repeaterObject;
@@ -12,7 +10,7 @@ Page {
     headerTools: HeaderToolsLayout {
         id: tools
         title: qsTr("Tabs")
-        showBackButton: tabModel.rowCount == 0; // user should always choose the page he want to go
+        showBackButton: tabModel.rowCount === 0; // user should always choose the page he want to go
 //        tools: [
 //            ToolButton {
 //                iconSource: "image://theme/plus"

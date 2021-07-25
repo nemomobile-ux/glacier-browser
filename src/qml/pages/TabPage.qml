@@ -65,4 +65,16 @@ Page {
         }
     }
 
+    Connections {
+        target: tabModel;
+        onRowCountChanged: {
+            if (tabModel.rowCount === 0) {
+                if (stackView) {
+                    stackView.pop()
+                }
+
+            }
+        }
+    }
+
 }

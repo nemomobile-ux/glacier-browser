@@ -12,7 +12,7 @@
     <name>Bookmarks</name>
     <message>
         <source>Bookmarks</source>
-        <translation>Záložky</translation>
+        <translation>Oblíbené</translation>
     </message>
 </context>
 <context>

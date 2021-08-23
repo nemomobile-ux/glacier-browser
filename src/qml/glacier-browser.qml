@@ -12,6 +12,9 @@ import "pages"
 ApplicationWindow{
     id: main
     initialPage: MainPage{}
+    contentOrientation: Screen.orientation
+    allowedOrientations:  Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedLandscapeOrientation | Qt.InvertedPortraitOrientation
+
 
     HistoryModel{
         id: historyModel

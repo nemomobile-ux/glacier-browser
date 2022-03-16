@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="de">
 <context>
     <name>AddressLine</name>
     <message>
@@ -12,7 +12,7 @@
     <message>
         <location filename="../src/qml/pages/Bookmarks.qml" line="15"/>
         <source>Bookmarks</source>
-        <translation>Bookmarks</translation>
+        <translation>Lesezeichen</translation>
     </message>
 </context>
 <context>

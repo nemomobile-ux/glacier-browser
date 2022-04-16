@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>components/AddressLine.qml</file>
+        <file>components/WebContentView.qml</file>
+        <file>pages/Bookmarks.qml</file>
+        <file>pages/MainPage.qml</file>
+        <file>pages/TabPage.qml</file>
+        <file>glacier-browser.qml</file>
+   </qresource>
+</RCC>

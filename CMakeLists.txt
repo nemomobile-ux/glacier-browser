@@ -12,9 +12,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include(FeatureSummary)
 include(GNUInstallDirs)
 
-set(QT_MIN_VERSION "5.6.0")
+set(QT_MIN_VERSION "5.11.0")
 find_package(Qt5 COMPONENTS Gui Qml Quick Sql WebEngine LinguistTools REQUIRED)
-find_package(Glacier COMPONENTS App REQUIRED)
+find_package(Glacier 0.8 COMPONENTS App REQUIRED)
+find_package(Qt5QuickCompiler)
 
 add_subdirectory(src)
 

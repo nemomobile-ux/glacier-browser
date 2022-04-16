@@ -5,7 +5,9 @@ set(SRC bookmarksmodel.cpp
     tabmodel.cpp
 )
 
-add_executable(glacier-browser ${SRC})
+qtquick_compiler_add_resources(RESOURCES qml/glacier-browser.qrc)
+
+add_executable(glacier-browser ${SRC} ${RESOURCES})
 
 target_link_libraries(glacier-browser
 	Qt5::Gui
@@ -17,5 +19,3 @@ target_link_libraries(glacier-browser
 
 install(TARGETS glacier-browser RUNTIME
 	DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(DIRECTORY qml
-	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/glacier-browser)

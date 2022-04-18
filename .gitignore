@@ -14,5 +14,5 @@ Makefile
 installroot/
 RPMS/
 debug*.list
-CMakeLists.txt.user
+CMakeLists.txt.user*
 build/

@@ -32,7 +32,7 @@
     <name>QObject</name>
     <message>
         <location filename="../src/main.cpp" line="35"/>
-        <source>Web browser</source>
+        <source>Browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

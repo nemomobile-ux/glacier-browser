@@ -33,7 +33,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QQuickWindow *window = GlacierApp::showWindow();
     window->setTitle(QObject::tr("Browser"));
-    window->setIcon(QIcon("/usr/share/glacier-browser/images/glacier-browser.png"));
+    window->setIcon(QIcon("/usr/share/glacier-browser/icons/glacier-browser.png"));
 
     return app->exec();
 }

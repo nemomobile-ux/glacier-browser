@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddressLine</name>
     <message>
@@ -33,7 +31,7 @@
     <message>
         <location filename="../src/main.cpp" line="35"/>
         <source>Browser</source>
-        <translation type="unfinished">Prohlížeč</translation>
+        <translation>Prohlížeč</translation>
     </message>
 </context>
 <context>

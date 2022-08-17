@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
 <context>
     <name>AddressLine</name>
     <message>
@@ -33,7 +31,7 @@
     <message>
         <location filename="../src/main.cpp" line="35"/>
         <source>Browser</source>
-        <translation type="unfinished">Браузер</translation>
+        <translation>Браузер</translation>
     </message>
 </context>
 <context>

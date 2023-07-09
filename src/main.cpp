@@ -19,13 +19,13 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
     QGuiApplication* app = GlacierApp::app(argc, argv);
     app->setOrganizationName("NemoMobile");
 
-    QScreen* sc = app->primaryScreen();
-    if (sc) {
-        sc->setOrientationUpdateMask(Qt::LandscapeOrientation
-            | Qt::PortraitOrientation
-            | Qt::InvertedLandscapeOrientation
-            | Qt::InvertedPortraitOrientation);
-    }
+    //    QScreen* sc = app->primaryScreen();
+    //    if (sc) {
+    //        sc->setOrientationUpdateMask(Qt::LandscapeOrientation
+    //            | Qt::PortraitOrientation
+    //            | Qt::InvertedLandscapeOrientation
+    //            | Qt::InvertedPortraitOrientation);
+    //    }
 
     qmlRegisterType<BookmarksModel>("org.glacier.browser", 1, 0, "BookmarksModel");
     qmlRegisterType<HistoryModel>("org.glacier.browser", 1, 0, "HistoryModel");

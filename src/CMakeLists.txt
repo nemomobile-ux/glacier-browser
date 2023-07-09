@@ -5,16 +5,16 @@ set(SRC bookmarksmodel.cpp
     tabmodel.cpp
 )
 
-qtquick_compiler_add_resources(RESOURCES qml/glacier-browser.qrc)
+qt_add_resources(RESOURCES qml/glacier-browser.qrc)
 
 add_executable(glacier-browser ${SRC} ${RESOURCES})
 
 target_link_libraries(glacier-browser
-	Qt5::Gui
-	Qt5::Qml
-	Qt5::Quick
-	Qt5::WebEngine
-	Qt5::Sql
+	Qt6::Gui
+	Qt6::Qml
+	Qt6::Quick
+	Qt6::WebEngineQuick
+	Qt6::Sql
 	Glacier::App)
 
 install(TARGETS glacier-browser RUNTIME

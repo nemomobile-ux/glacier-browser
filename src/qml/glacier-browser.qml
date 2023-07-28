@@ -8,7 +8,7 @@ ApplicationWindow{
     id: main
     initialPage: MainPage{}
     contentOrientation: Screen.orientation
-    allowedOrientations:  Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedLandscapeOrientation | Qt.InvertedPortraitOrientation
+//    allowedOrientations:  Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedLandscapeOrientation | Qt.InvertedPortraitOrientation
 
 
     HistoryModel{

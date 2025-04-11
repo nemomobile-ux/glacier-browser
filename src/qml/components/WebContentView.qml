@@ -1,6 +1,8 @@
 import QtQuick
-import Nemo.Controls
 import QtWebEngine
+
+import Nemo
+import Nemo.Controls
 
 Item{
     id: webWrapper

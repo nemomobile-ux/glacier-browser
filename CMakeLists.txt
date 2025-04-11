@@ -12,9 +12,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include(FeatureSummary)
 include(GNUInstallDirs)
 
-set(QT_MIN_VERSION "5.11.0")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_INSTALL_PREFIX /usr)
+
+set(QT_MIN_VERSION "6.0.0")
 find_package(Qt6 COMPONENTS Gui Qml Quick Sql WebEngineQuick LinguistTools REQUIRED)
-find_package(Glacier 0.8 COMPONENTS App REQUIRED)
+find_package(Glacier 1.0 COMPONENTS App REQUIRED)
 
 add_subdirectory(src)
 
